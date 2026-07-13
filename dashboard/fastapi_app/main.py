@@ -6,13 +6,15 @@ import os
 
 st.set_page_config(page_title="Customer Value Predictor", page_icon="🛍️", layout="wide")
 
-BASE = os.path.dirname(__file__)
+BASE = os.path.dirname(os.path.abspath(__file__))
+# main.py lives in dashboard/fastapi_app/ ; the trained models live in <repo_root>/models/
+MODELS_DIR = os.path.normpath(os.path.join(BASE, "..", "..", "models"))
 
 @st.cache_resource
 def load_models():
-    rf = joblib.load(os.path.join(BASE, "models", "best_classifier_rf.pkl"))
-    kmeans = joblib.load(os.path.join(BASE, "models", "kmeans_model.pkl"))
-    scaler = joblib.load(os.path.join(BASE, "models", "scalar.pkl"))
+    rf = joblib.load(os.path.join(MODELS_DIR, "best_classifier_rf.pkl"))
+    kmeans = joblib.load(os.path.join(MODELS_DIR, "kmeans_model.pkl"))
+    scaler = joblib.load(os.path.join(MODELS_DIR, "scalar.pkl"))
     return rf, kmeans, scaler
 
 try:
