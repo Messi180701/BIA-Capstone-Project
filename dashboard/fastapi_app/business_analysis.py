@@ -96,29 +96,38 @@ def get_customer_count_by_segment(df: pd.DataFrame) -> dict:
     return counts.to_dict()
 
 
-def get_marketing_recommendation(segment: str) -> str:
-    """Return a marketing recommendation for a customer segment."""
-
+def get_marketing_recommendation(segment):
     recommendations = {
-        "VIP": (
-            "Provide exclusive rewards, premium loyalty benefits, "
-            "early product access, and personalised service."
-        ),
-        "Loyal": (
-            "Use cross-selling, upselling, referral rewards, "
-            "and membership benefits."
-        ),
-        "New": (
-            "Send onboarding messages, first-purchase offers, "
-            "and recommendations that encourage a second purchase."
-        ),
-        "At Risk": (
-            "Run win-back campaigns, reminder emails, personalised "
-            "discounts, and limited-period offers."
-        ),
+        "Loyal Customers": "Reward them with loyalty benefits...",
+        "Potential Loyalists": "Use personalised offers...",
+        "At Risk Customers": "Use win-back campaigns...",
+        "Low Value Customers": "Use low-cost automated campaigns...",
     }
 
     return recommendations.get(
         segment,
-        "Review the customer's behaviour before selecting a campaign.",
+        "No recommendation is available for this segment.",
     )
+
+def get_all_marketing_recommendations():
+    """
+    Return marketing recommendations for every customer segment.
+    """
+    return {
+        "Loyal Customers": (
+            "Invest in loyalty rewards, early access, referrals, "
+            "and personalised premium offers."
+        ),
+        "Potential Loyalists": (
+            "Use personalised product recommendations, limited-time "
+            "offers, and repeat-purchase incentives."
+        ),
+        "At Risk Customers": (
+            "Use win-back campaigns, reminder emails, targeted discounts, "
+            "and customer-feedback surveys."
+        ),
+        "Low Value Customers": (
+            "Use inexpensive automated campaigns and bundle offers. "
+            "Avoid assigning a large portion of the marketing budget."
+        ),
+    }
