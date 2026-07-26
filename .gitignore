@@ -1,8 +1,17 @@
+# Secrets and environment files
+.env
+.env.*
+*.env
+
+# Allow safe template file
+!.env.example
+
 # Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+.pytest_cache/
 
 # Jupyter
 .ipynb_checkpoints/
@@ -12,7 +21,7 @@ venv/
 .venv/
 env/
 
-# IDE files
+# IDE
 .vscode/
 .idea/
 
